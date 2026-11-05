@@ -1,0 +1,4 @@
+/* Self-hosted, so visiting the site sends nothing to a font CDN. */
+@import "@fontsource-variable/bricolage-grotesque/opsz.css";
+@import "@fontsource-variable/shantell-sans/wght-italic.css";
+@import "@fontsource-variable/martian-mono/wght.css";

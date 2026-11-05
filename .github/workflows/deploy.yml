@@ -1,0 +1,58 @@
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Check the PHP endpoint parses
+        run: php -l dist/api/releases-lib.php && php -l dist/api/releases.php && php -l dist/api/download.php
+
+      - name: Upload over SSH
+        env:
+          SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+          SSH_HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
+          SSH_PORT: ${{ secrets.HOSTINGER_SSH_PORT }}
+          SSH_USER: ${{ secrets.HOSTINGER_SSH_USER }}
+          TARGET_DIR: ${{ secrets.HOSTINGER_TARGET_DIR }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          # --delete keeps the server in step with the build, but never touches the release cache
+          # or the optional GitHub token that live only on the server.
+          rsync -az --delete \
+            --exclude 'router.php' \
+            --exclude 'api/cache/*.json' \
+            --filter 'protect api/cache/*.json' \
+            --filter 'protect api/config.local.php' \
+            -e "ssh -i ~/.ssh/id_deploy -p $SSH_PORT" \
+            dist/ "$SSH_USER@$SSH_HOST:$TARGET_DIR/"
+
+      - name: Smoke test
+        run: |
+          curl -fsS -o /dev/null https://uttr.letsdecodeai.com/
+          curl -fsS https://uttr.letsdecodeai.com/api/releases | grep -q '"latest"'

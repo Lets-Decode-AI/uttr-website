@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Privacy · uttr</title>
+    <meta name="description" content="uttr collects no data. Audio is transcribed on your computer and never uploaded. How the app and this website handle information." />
+    <link rel="canonical" href="https://uttr.letsdecodeai.com/privacy/" />
+    <meta name="theme-color" content="#dfe4dc" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <script type="module" src="/src/legal.ts"></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="nav">
+      <div class="wrap nav-inner">
+        <a class="brand" href="/" aria-label="uttr home"><img src="/img/icon.png" width="30" height="30" alt="" /><span>uttr</span></a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="/#how">How it works</a>
+          <a href="/#privacy">Privacy</a>
+          <a href="/#features">Features</a>
+          <a href="/#releases">Releases</a>
+          <a href="https://github.com/Lets-Decode-AI/Uttr">GitHub</a>
+        </nav>
+        <a class="btn btn-sm" href="/#download">Download</a>
+      </div>
+    </header>
+    <main id="main" class="legal">
+      <div class="wrap legal-grid">
+        <aside class="legal-aside">
+          <h1 class="h2">Privacy</h1>
+          <p class="data">Effective 5 November 2026</p>
+          <nav aria-label="On this page">
+            <a href="#who">Who we are</a>
+            <a href="#app">The uttr app</a>
+            <a href="#third">Services you choose</a>
+            <a href="#site">This website</a>
+            <a href="#rights">Your choices</a>
+            <a href="#changes">Changes</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </aside>
+        <article class="legal-body">
+          <div class="summary"><p>uttr collects nothing. By default your voice is transcribed on your computer and never leaves it. This website sets no cookies and runs no analytics.</p></div>
+
+          <h2 id="who">Who we are</h2>
+          <p>uttr is free, open-source software maintained by <a href="https://letsdecodeai.com">Lets Decode AI</a> and its contributors. This policy covers the uttr desktop app and this website, uttr.letsdecodeai.com. The source code for both is public, so every statement below can be checked in the <a href="https://github.com/Lets-Decode-AI/Uttr">repository</a>.</p>
+
+          <h2 id="app">The uttr app</h2>
+          <p><strong>We do not collect any data from the app.</strong> There is no account, no telemetry, no analytics and no crash reporting. The app never sends anything to Lets Decode AI.</p>
+          <ul>
+            <li><strong>Your voice.</strong> By default, audio is turned into text by a speech model running on your computer. Audio is held in memory only while it is being transcribed. It is never written to disk, and with the on-device engine it is never uploaded. After a dictation the microphone may stay open for up to 15 seconds so the next one does not lose its first word; during that time only the latest 0.3 seconds of audio is kept in memory, and then the microphone closes.</li>
+            <li><strong>Your text and settings.</strong> Dictation history, your dictionary, snippets, per-app styles and settings are stored in files on your computer, including a local SQLite database. You can delete them at any time from the app or by removing its data folder.</li>
+            <li><strong>Keys and tokens.</strong> An optional Hugging Face token and any AI provider API keys are stored in your operating system's keychain or credential store, not in plain files.</li>
+            <li><strong>Logs.</strong> Diagnostic logs, where the app writes them, stay on your computer. They are only shared if you choose to attach them to a bug report.</li>
+          </ul>
+
+          <h2 id="third">Services you choose to use</h2>
+          <p>uttr talks to the network only when you ask it to. When it does, the service you are talking to receives your request and your IP address, and its own privacy policy applies:</p>
+          <ul>
+            <li><strong>Hugging Face</strong>, when you download a model or search for one. A token is sent only if you added one.</li>
+            <li><strong>A cloud speech service</strong>, only if you switch speech recognition to <em>Cloud (your key)</em> on the Models page. Then the <em>audio</em> of each dictation is sent, in short pieces while you talk, to the service you chose (OpenAI, Groq or your own server) with your own API key, and that service's privacy policy applies.</li>
+            <li><strong>OpenAI, Anthropic, OpenRouter or a server you configure</strong>, only if you turn on AI cleanup or Command Mode with a cloud provider. Then the transcribed <em>text</em> of a dictation (and, for Command Mode, the text you selected) is sent to that provider with your own API key. Audio is never sent. AI is off by default, and the on-device option sends nothing.</li>
+            <li><strong>GitHub</strong>, which hosts the source code and the installers you download.</li>
+          </ul>
+
+          <h2 id="site">This website</h2>
+          <ul>
+            <li>The site has <strong>no cookies, no analytics, no advertising and no tracking scripts</strong>. Fonts and images are served from this site, not from third-party CDNs.</li>
+            <li>It is hosted by <a href="https://www.hostinger.com/legal/privacy-policy">Hostinger</a>. Like any web host, the server records technical request data such as your IP address, browser user agent and the page requested in its access logs, in order to deliver the site and protect it from abuse. We do not use that data to identify or profile visitors.</li>
+            <li>Release information shown on the site is fetched by our server from the GitHub API, so your browser does not contact GitHub until you click a download. Download links then redirect you to GitHub, which serves the file.</li>
+            <li>To suggest the right installer, the page reads your operating system and processor type from your browser. This happens only in your browser and is not sent or stored.</li>
+          </ul>
+
+          <h2 id="rights">Your choices and rights</h2>
+          <p>Because we do not hold personal data about you from the app, there is nothing for us to access, correct or delete. Data on your computer is under your control. For data held by the services above, use the controls each one provides. If you contact us through GitHub, your message is handled under <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a> and may be public if posted as an issue.</p>
+
+          <h2 id="children">Children</h2>
+          <p>uttr is a general-purpose tool and is not directed at children. We do not knowingly collect information from anyone, including children.</p>
+
+          <h2 id="changes">Changes</h2>
+          <p>If this policy changes, the new version will be published on this page with a new effective date, and the history of changes is visible in the public repository.</p>
+
+          <h2 id="contact">Contact</h2>
+          <p>Questions about privacy: open a discussion or issue on <a href="https://github.com/Lets-Decode-AI/Uttr/issues">GitHub</a>, or reach Lets Decode AI through <a href="https://letsdecodeai.com">letsdecodeai.com</a>. Report security problems privately through <a href="https://github.com/Lets-Decode-AI/Uttr/security/policy">GitHub security advisories</a>.</p>
+
+        </article>
+      </div>
+    </main>
+    <footer class="footer on-night section" style="padding-bottom:32px">
+      <div class="wrap">
+        <div class="footer-top">
+          <a class="parent" href="https://letsdecodeai.com"><small>A project by</small><strong>Lets Decode <span class="say">AI</span></strong><span>letsdecodeai.com <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11 11 5M6 4.5h5.5V10"/></svg></span></a>
+          <nav class="footer-links" aria-label="Footer">
+            <div><h2>Product</h2><a href="/#how">How it works</a><a href="/#privacy">Privacy model</a><a href="/#features">Features</a><a href="/#download">Download</a></div>
+            <div><h2>Open source</h2><a href="https://github.com/Lets-Decode-AI/Uttr">GitHub</a><a href="https://github.com/Lets-Decode-AI/Uttr/releases">Releases</a><a href="https://github.com/Lets-Decode-AI/Uttr/blob/main/CONTRIBUTING.md">Contributing</a><a href="https://github.com/Lets-Decode-AI/Uttr/blob/main/LICENSE">MIT License</a></div>
+            <div><h2>Legal</h2><a href="/privacy/">Privacy policy</a><a href="/terms/">Terms</a><a href="https://github.com/Lets-Decode-AI/Uttr/security/policy">Security</a></div>
+          </nav>
+        </div>
+        <div class="footer-base"><span>&copy; 2026 Lets Decode AI and uttr contributors.</span><span>Speech stays on your device.</span></div>
+      </div>
+    </footer>
+  </body>
+</html>

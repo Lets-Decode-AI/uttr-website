@@ -1,0 +1,4 @@
+# Only the two entry points are reachable; the library, cache and local config are not.
+<FilesMatch "^(releases-lib|config\.local)\.php$">
+  Require all denied
+</FilesMatch>

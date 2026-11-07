@@ -5,6 +5,8 @@ import { defineConfig } from "vite";
 export default defineConfig({
   plugins: [react()],
   build: {
+    // Never inline files as data: URIs; the Content-Security-Policy only allows fonts and images from this site.
+    assetsInlineLimit: 0,
     rollupOptions: {
       input: {
         main: resolve(import.meta.dirname, "index.html"),

@@ -2,69 +2,69 @@
 name: uttr
 description: Speech you can see. Hold a key, speak, let go; the text lands at your cursor.
 colors:
-  paper: "#dfe4dc"
-  paper-line: "rgba(42, 84, 70, 0.08)"
-  sheet: "#f6f7f4"
-  sheet-2: "#e9ede7"
-  sheet-edge: "rgba(22, 37, 31, 0.12)"
-  desk: "#c9d3cc"
-  hinge: "#a9b4ad"
-  ink: "#16251f"
-  ink-2: "#33463e"
-  muted: "#4d5e56"
-  rule: "rgba(22, 37, 31, 0.14)"
-  forest: "#2a5446"
-  mint: "#a6d6bc"
-  mint-wash: "rgba(166, 214, 188, 0.6)"
-  strike: "#a04a33"
-  night: "#16251f"
-  night-2: "#24493d"
-  on-night: "#eef1ec"
+  paper: "#e2e9e6"
+  paper-line: "rgba(39, 75, 64, 0.075)"
+  sheet: "#fcfdfc"
+  sheet-2: "#f2f5f4"
+  sheet-edge: "rgba(17, 42, 33, 0.11)"
+  desk: "#c9d4cf"
+  hinge: "#a9b4af"
+  ink: "#112a21"
+  ink-2: "#30423b"
+  muted: "#535e59"
+  rule: "rgba(17, 42, 33, 0.13)"
+  forest: "#274b40"
+  mint: "#a8e0c1"
+  mint-wash: "rgba(168, 224, 193, 0.6)"
+  strike: "#b94739"
+  night: "#112a21"
+  night-2: "#204638"
+  on-night: "#f8f6ee"
   on-night-2: "#b9c8bf"
-  night-rule: "rgba(238, 241, 236, 0.16)"
+  night-rule: "rgba(248, 246, 238, 0.16)"
 typography:
   display:
-    fontFamily: "Bricolage Grotesque Variable, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Urbanist Variable, Hanken Grotesk Variable, ui-sans-serif, system-ui, sans-serif"
     fontSize: "clamp(46px, 5.6vw, 82px)"
     fontWeight: 560
     lineHeight: 0.97
     letterSpacing: "-0.04em"
   display-download:
-    fontFamily: "Bricolage Grotesque Variable, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Urbanist Variable, Hanken Grotesk Variable, ui-sans-serif, system-ui, sans-serif"
     fontSize: "clamp(56px, 7vw, 96px)"
     fontWeight: 560
     lineHeight: 0.97
     letterSpacing: "-0.04em"
   headline:
-    fontFamily: "Bricolage Grotesque Variable, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Urbanist Variable, Hanken Grotesk Variable, ui-sans-serif, system-ui, sans-serif"
     fontSize: "clamp(40px, 4.6vw, 66px)"
     fontWeight: 560
     lineHeight: 1
     letterSpacing: "-0.035em"
   headline-sm:
-    fontFamily: "Bricolage Grotesque Variable, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Urbanist Variable, Hanken Grotesk Variable, ui-sans-serif, system-ui, sans-serif"
     fontSize: "clamp(34px, 3.6vw, 52px)"
     fontWeight: 560
     lineHeight: 1
     letterSpacing: "-0.035em"
   title:
-    fontFamily: "Bricolage Grotesque Variable, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Urbanist Variable, Hanken Grotesk Variable, ui-sans-serif, system-ui, sans-serif"
     fontSize: "clamp(24px, 2.2vw, 30px)"
     fontWeight: 560
     lineHeight: 1.1
     letterSpacing: "-0.02em"
   lede:
-    fontFamily: "Bricolage Grotesque Variable, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Hanken Grotesk Variable, ui-sans-serif, system-ui, sans-serif"
     fontSize: "clamp(17px, 1.45vw, 20px)"
     fontWeight: 400
     lineHeight: 1.5
   body:
-    fontFamily: "Bricolage Grotesque Variable, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Hanken Grotesk Variable, ui-sans-serif, system-ui, sans-serif"
     fontSize: "17px"
     fontWeight: 400
     lineHeight: 1.55
   label:
-    fontFamily: "Bricolage Grotesque Variable, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Hanken Grotesk Variable, ui-sans-serif, system-ui, sans-serif"
     fontSize: "15px"
     fontWeight: 600
     lineHeight: 1
@@ -86,7 +86,7 @@ typography:
     fontFeature: "tnum, zero"
 rounded:
   mark: "3px"
-  sheet: "4px"
+  sheet: "14px"
   inset: "10px"
   key: "12px"
   summary: "16px"
@@ -197,7 +197,7 @@ Two grounds carry the story. The light grid paper holds what uttr does and how. 
 
 ## Colors
 
-A cool, low-chroma forest palette on pale green-grey paper, with exactly two signal colors that each carry one meaning.
+A cool, low-chroma forest palette on pale green-grey paper, with exactly two signal colors that each carry one meaning. Since v0.4.0 the values are the uttr app's own tokens (forest #274B40, neutrals tinted toward forest at OKLCH hue ~168, cream #F8F6EE on dark, pale mint as the dark accent), converted to hex.
 
 ### Primary
 - **Forest Ink** (ink): All text, the primary button, the Flow Bar, the laptop bezel, table header rules. Also the second ground (night) for the privacy, download and footer bands.
@@ -229,17 +229,18 @@ A cool, low-chroma forest palette on pale green-grey paper, with exactly two sig
 
 ## Typography
 
-**Display Font:** Bricolage Grotesque Variable (with ui-sans-serif, system-ui)
+**Display Font:** Urbanist Variable (with Hanken Grotesk, ui-sans-serif, system-ui), for h1 to h3, the wordmark and large labels
+**Body Font:** Hanken Grotesk Variable (with ui-sans-serif, system-ui), for all running text and UI
 **Hand Font:** Shantell Sans Variable, italic (with Comic Sans MS, cursive)
 **Label/Mono Font:** Martian Mono Variable (with ui-monospace, Menlo)
 
-All three are self-hosted through Fontsource; no font is loaded from a third-party CDN.
+Urbanist and Hanken Grotesk are the faces the uttr app itself ships since v0.4.0, so the site and the app read as one product. All four are self-hosted through Fontsource; no font is loaded from a third-party CDN.
 
-**Character:** A sturdy, optically sized grotesque does all the talking; a warm hand-drawn italic interrupts once per heading the way a speaker leans on a word; a wide monospace logs the measurements like ticks on a chart axis.
+**Character:** A light, geometric display face (Urbanist) and a plain, readable grotesque (Hanken Grotesk) do all the talking, as in the app; a warm hand-drawn italic interrupts once per heading the way a speaker leans on a word; a wide monospace logs the measurements like ticks on a chart axis.
 
 ### Hierarchy
-- **Display** (560, clamp(46px, 5.6vw, 82px), 0.97, -0.04em): The hero h1 and the 404 heading. The download band scales it up (display-download).
-- **Headline** (560, clamp(40px, 4.6vw, 66px), 1.0, -0.035em): Section h2s; headline-sm for denser sections.
+- **Display** (Urbanist 520, clamp(46px, 5.6vw, 82px), 0.97, -0.028em): The hero h1 and the 404 heading. The download band scales it up (display-download).
+- **Headline** (Urbanist 520, clamp(40px, 4.6vw, 66px), 1.0, -0.025em): Section h2s; headline-sm for denser sections.
 - **Title** (560, clamp(24px, 2.2vw, 30px), 1.1, -0.02em): Feature sheet and step h3s.
 - **Lede** (400, clamp(17px, 1.45vw, 20px), 1.5): Intro paragraphs, max 34em, ink-2.
 - **Body** (400, 17px, 1.55): Running copy, with `text-wrap: pretty`; legal body capped at 42em.
@@ -270,7 +271,7 @@ The system is flat. Depth is laying order: a sheet laid later lies over the ones
 
 ## Shapes
 
-Corners are graded by what the object is. Feature sheets are paper and take a barely-there 4px corner. Windows and inset wells on the desk take 10px, the keycap 12px, the legal summary card 16px, the privacy zones 22px, and the laptop bezel 20px over an 8px chin. Anything you press or that floats as a control (buttons, Flow Bar, chips, badges) is a full pill. Inserted-text marks are 3px.
+Corners are graded by what the object is. Feature sheets take a soft 14px corner, echoing the app's rounded sheets and cards. Windows and inset wells on the desk take 10px, the keycap 12px, the legal summary card 16px, the privacy zones 22px, and the laptop bezel 20px over an 8px chin. Anything you press or that floats as a control (buttons, Flow Bar, chips, badges) is a full pill. Inserted-text marks are 3px.
 
 Lines are drawn, not boxed: 1.5px ink rules frame tables, the spectrogram band and release lists; 1px rules separate rows. Leader lines are 1.4px forest strokes with round caps. Icons are one SVG stroke set on a 16px grid, 1.6px round strokes, colored by currentColor.
 

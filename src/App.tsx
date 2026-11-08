@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { DeskDemo } from "./components/DeskDemo";
 import { HowItWorks } from "./components/HowItWorks";
 import { Check, GitHub } from "./components/Icons";
-import { Download, DownloadButton, Features, Footer, Models, Privacy, Releases } from "./components/Sections";
+import { Download, DownloadButton, Features, Footer, Models, Privacy, Questions, Releases } from "./components/Sections";
 import { REPO_URL, useVisitor } from "./data";
 
 export function App() {
@@ -26,6 +26,7 @@ export function App() {
         <Features />
         <Models />
         <Releases />
+        <Questions />
         <Download />
       </main>
       <Footer />

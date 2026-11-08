@@ -63,7 +63,7 @@ function paint(canvas: HTMLCanvasElement) {
         if (k % 2 === 0 && onset < 0.07 && f > 0.45) v += 0.5 * seeded(c * 13 + r);
       }
       if (v < 0.08) continue;
-      ctx.fillStyle = f < 0.45 ? "#16251f" : "#2a5446";
+      ctx.fillStyle = f < 0.45 ? "#112a21" : "#274b40";
       ctx.globalAlpha = Math.min(1, v);
       ctx.fillRect(c * cw, height - (r + 1) * rh, cw + 0.4, rh + 0.4);
     }

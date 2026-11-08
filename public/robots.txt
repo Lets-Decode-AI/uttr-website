@@ -1,0 +1,9 @@
+# uttr.letsdecodeai.com: everything here is public. Search engines and AI assistants are welcome.
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# The download redirects are fine to follow; they point at GitHub Releases.
+Allow: /download/
+
+Sitemap: https://uttr.letsdecodeai.com/sitemap.xml

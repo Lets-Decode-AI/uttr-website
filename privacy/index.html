@@ -4,10 +4,20 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Privacy · uttr</title>
-    <meta name="description" content="uttr collects no data. Audio is transcribed on your computer and never uploaded. How the app and this website handle information." />
+    <meta name="description" content="uttr collects no data. By default audio is transcribed on your computer and never uploaded. How the app and this website handle information." />
     <link rel="canonical" href="https://uttr.letsdecodeai.com/privacy/" />
-    <meta name="theme-color" content="#dfe4dc" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="uttr" />
+    <meta property="og:url" content="https://uttr.letsdecodeai.com/privacy/" />
+    <meta property="og:title" content="Privacy · uttr" />
+    <meta property="og:description" content="uttr collects no data. By default audio is transcribed on your computer and never uploaded. How the app and this website handle information." />
+    <meta property="og:image" content="https://uttr.letsdecodeai.com/img/social-preview.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"uttr","item":"https://uttr.letsdecodeai.com/"},{"@type":"ListItem","position":2,"name":"Privacy","item":"https://uttr.letsdecodeai.com/privacy/"}]}</script>
+    <meta name="theme-color" content="#e2e9e6" />
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/img/icon.png" />
     <script type="module" src="/src/legal.ts"></script>
   </head>
   <body>
@@ -29,7 +39,7 @@
       <div class="wrap legal-grid">
         <aside class="legal-aside">
           <h1 class="h2">Privacy</h1>
-          <p class="data">Effective 5 November 2026</p>
+          <p class="data">Effective 8 November 2026</p>
           <nav aria-label="On this page">
             <a href="#who">Who we are</a>
             <a href="#app">The uttr app</a>
@@ -49,6 +59,9 @@
           <h2 id="app">The uttr app</h2>
           <p><strong>We do not collect any data from the app.</strong> There is no account, no telemetry, no analytics and no crash reporting. The app never sends anything to Lets Decode AI.</p>
           <ul>
+            <li><strong>Updates.</strong> Since v0.4.0, release builds check GitHub Releases for a new version about 20 seconds after launch and every 6 hours, by downloading a small public file (<code>latest.json</code>). The request carries no data about you or your dictations; GitHub sees it like any web request. Updates install only when you choose <em>Update and restart</em>, are verified against uttr's signing key, and keep your settings, history, snippets and models.</li>
+          </ul>
+          <ul>
             <li><strong>Your voice.</strong> By default, audio is turned into text by a speech model running on your computer. Audio is held in memory only while it is being transcribed. It is never written to disk, and with the on-device engine it is never uploaded. After a dictation the microphone may stay open for up to 15 seconds so the next one does not lose its first word; during that time only the latest 0.3 seconds of audio is kept in memory, and then the microphone closes.</li>
             <li><strong>Your text and settings.</strong> Dictation history, your dictionary, snippets, per-app styles and settings are stored in files on your computer, including a local SQLite database. You can delete them at any time from the app or by removing its data folder.</li>
             <li><strong>Keys and tokens.</strong> An optional Hugging Face token and any AI provider API keys are stored in your operating system's keychain or credential store, not in plain files.</li>
@@ -56,12 +69,12 @@
           </ul>
 
           <h2 id="third">Services you choose to use</h2>
-          <p>uttr talks to the network only when you ask it to. When it does, the service you are talking to receives your request and your IP address, and its own privacy policy applies:</p>
+          <p>Apart from the update check above, uttr talks to the network only when you ask it to. When it does, the service you are talking to receives your request and your IP address, and its own privacy policy applies:</p>
           <ul>
             <li><strong>Hugging Face</strong>, when you download a model or search for one. A token is sent only if you added one.</li>
             <li><strong>A cloud speech service</strong>, only if you switch speech recognition to <em>Cloud (your key)</em> on the Models page. Then the <em>audio</em> of each dictation is sent, in short pieces while you talk, to the service you chose (OpenAI, Groq or your own server) with your own API key, and that service's privacy policy applies.</li>
             <li><strong>OpenAI, Anthropic, OpenRouter or a server you configure</strong>, only if you turn on AI cleanup or Command Mode with a cloud provider. Then the transcribed <em>text</em> of a dictation (and, for Command Mode, the text you selected) is sent to that provider with your own API key. Audio is never sent. AI is off by default, and the on-device option sends nothing.</li>
-            <li><strong>GitHub</strong>, which hosts the source code and the installers you download.</li>
+            <li><strong>GitHub</strong>, which hosts the source code, the installers you download and the in-app update files.</li>
           </ul>
 
           <h2 id="site">This website</h2>

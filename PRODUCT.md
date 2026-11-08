@@ -49,6 +49,8 @@ telemetry, and the whole thing is MIT-licensed on GitHub. Competitors are not na
 - Optional AI cleanup (off by default): on-device with llama.cpp, or the user's own OpenAI, Anthropic or OpenRouter key, or any OpenAI-compatible server. When a cloud provider is chosen, only text is sent, never audio.
 - Optional cloud speech since v0.3.0 ("Cloud (your key)" on the Models page): OpenAI, Groq or any OpenAI-compatible transcription server. Then the audio of each dictation is uploaded in pieces to that service. Every "audio never leaves your computer" statement must say "by default" or name the on-device engine.
 - Home dashboard (v0.3.0): words dictated, speed, streak and time saved.
+- In-app updates (v0.4.0): release builds check GitHub Releases (`latest.json`) 20 s after launch and every 6 h, show "Update and restart", verify the signature and keep settings, history, snippets and models. This check is the only network traffic uttr starts on its own; it sends no user data.
+- v0.4.0 refreshed the app's design system: Urbanist + Hanken Grotesk, forest #274B40, soft rounded sheets. The site uses the same faces and palette.
 - Command Mode: select text, hold the command keys and say what to do with it.
 - Snippets, per-app styles, personal dictionary, searchable local history (SQLite).
 
@@ -61,7 +63,7 @@ telemetry, and the whole thing is MIT-licensed on GitHub. Competitors are not na
 
 ## Evidence on Hand
 
-- Real app screenshots with sample data: `public/img/history-light.png`, `history-dark.png`, `ai-light.png` (more in the app repo's `docs/images/`).
+- Real app screenshots with sample data, retaken from the v0.4.0 UI with the app repo's `scripts/screenshots` harness: `public/img/history-light.png`, `public/img/home-light.png`.
 - Measured performance from the project's integration test (Parakeet v2 int8, Apple Silicon): 4-6 s clips in about 360-530 ms; a 62.5 s streamed dictation finishes about 421 ms after key-up. Hardware varies.
 - Live release data from GitHub (versions, dates, notes, installer sizes).
 - No testimonials, user counts, customer logos, press or star counts to quote. Do not invent them.

@@ -8,14 +8,15 @@
   "scripts": {
     "dev": "vite",
     "api": "php -S 127.0.0.1:8788 -t public public/router.php",
-    "build": "npm run typecheck && vite build",
-    "preview": "vite build && php -S 127.0.0.1:8788 -t dist dist/router.php",
+    "build": "npm run typecheck && vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
+    "preview": "npm run build && php -S 127.0.0.1:8788 -t dist dist/router.php",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@fontsource-variable/bricolage-grotesque": "^5.3.0",
+    "@fontsource-variable/hanken-grotesk": "^5.3.0",
     "@fontsource-variable/martian-mono": "^5.3.0",
     "@fontsource-variable/shantell-sans": "^5.3.0",
+    "@fontsource-variable/urbanist": "^5.3.0",
     "motion": "^14.9.1",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"

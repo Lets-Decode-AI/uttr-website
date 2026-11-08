@@ -1,4 +1,6 @@
-/* Self-hosted, so visiting the site sends nothing to a font CDN. */
-@import "@fontsource-variable/bricolage-grotesque/opsz.css";
+/* Self-hosted, so visiting the site sends nothing to a font CDN.
+   Urbanist + Hanken Grotesk are the faces the uttr app itself ships (v0.4.0 design system). */
+@import "@fontsource-variable/urbanist/wght.css";
+@import "@fontsource-variable/hanken-grotesk/wght.css";
 @import "@fontsource-variable/shantell-sans/wght-italic.css";
 @import "@fontsource-variable/martian-mono/wght.css";

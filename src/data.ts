@@ -10,6 +10,25 @@ type FeedState = { status: "loading" } | { status: "ready"; feed: ReleaseFeed } 
 
 let feedPromise: Promise<ReleaseFeed> | null = null;
 
+/* The prerendered page carries a snapshot of the release feed taken at build time, so crawlers and
+   first paint see the real versions and notes. The page renders from it, then swaps in the live feed. */
+let snapshot: ReleaseFeed | null = null;
+
+export function primeFeed(feed: ReleaseFeed | null) {
+  snapshot = feed;
+}
+
+if (typeof document !== "undefined") {
+  const el = document.getElementById("release-feed");
+  if (el?.textContent) {
+    try {
+      snapshot = JSON.parse(el.textContent) as ReleaseFeed;
+    } catch {
+      snapshot = null;
+    }
+  }
+}
+
 function loadFeed(): Promise<ReleaseFeed> {
   feedPromise ??= fetch("/api/releases").then((r) => {
     if (!r.ok) throw new Error(String(r.status));
@@ -19,12 +38,13 @@ function loadFeed(): Promise<ReleaseFeed> {
 }
 
 export function useReleaseFeed(): FeedState {
-  const [state, setState] = useState<FeedState>({ status: "loading" });
+  const [state, setState] = useState<FeedState>(() => (snapshot ? { status: "ready", feed: snapshot } : { status: "loading" }));
   useEffect(() => {
     let alive = true;
     loadFeed().then(
       (feed) => alive && setState({ status: "ready", feed }),
-      () => alive && setState({ status: "error" }),
+      // Keep showing the build-time snapshot if the live feed fails.
+      () => alive && setState((s) => (s.status === "ready" ? s : { status: "error" })),
     );
     return () => {
       alive = false;
@@ -41,11 +61,11 @@ export function useLatestAssets(): { version: string | null; assets: ReleaseAsse
 }
 
 export function useVisitor(): Visitor {
-  const [visitor, setVisitor] = useState<Visitor>(() => {
-    const os = typeof navigator === "undefined" ? "unknown" : detectOs();
-    return { os, platform: null, archGuessed: true, shortcut: shortcutFor(os) };
-  });
+  // Starts unknown on the server and on the first client render (so hydration matches), then detects.
+  const [visitor, setVisitor] = useState<Visitor>({ os: "unknown", platform: null, archGuessed: true, shortcut: shortcutFor("unknown") });
   useEffect(() => {
+    const os = detectOs();
+    setVisitor((v) => (v.os === "unknown" ? { ...v, os, shortcut: shortcutFor(os) } : v));
     detectVisitor().then(setVisitor);
   }, []);
   return visitor;
@@ -56,5 +76,6 @@ export function formatSize(bytes: number): string {
 }
 
 export function formatDate(iso: string): string {
-  return new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+  // UTC, so the prerendered date and the visitor's render agree.
+  return new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
 }

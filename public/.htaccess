@@ -1,7 +1,10 @@
 # uttr.letsdecodeai.com on Hostinger (Apache / LiteSpeed)
 RewriteEngine On
 
-# HTTPS only
+# One host, HTTPS only: www and http both 301 to https://uttr.letsdecodeai.com, so search engines see one URL.
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
 RewriteCond %{HTTPS} !=on
 RewriteCond %{HTTP:X-Forwarded-Proto} !=https
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
@@ -10,13 +13,25 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 RewriteRule ^api/releases/?$ api/releases.php [L]
 RewriteRule ^download/([a-z0-9-]+)/?$ api/download.php?platform=$1 [L,QSA]
 
+# /index.html is the same page as /; keep one URL.
+RewriteCond %{THE_REQUEST} \s/index\.html[\s?] [NC]
+RewriteRule ^index\.html$ / [L,R=301]
+
 ErrorDocument 404 /404.html
+
+AddType text/plain;charset=utf-8 .txt
+AddType application/manifest+json .webmanifest
+AddType application/xml;charset=utf-8 .xml
 
 <IfModule mod_headers.c>
   Header always set X-Content-Type-Options "nosniff"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Permissions-Policy "camera=(), geolocation=(), microphone=(self)"
   Header always set Strict-Transport-Security "max-age=31536000"
+  # The API and download redirects are not pages; keep them out of search results.
+  <If "%{REQUEST_URI} =~ m#^/(api|download)/#">
+    Header always set X-Robots-Tag "noindex"
+  </If>
   Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; font-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
 </IfModule>
 
@@ -31,5 +46,5 @@ ErrorDocument 404 /404.html
 </If>
 
 <IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/xml application/javascript application/json application/manifest+json image/svg+xml
 </IfModule>

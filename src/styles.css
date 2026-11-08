@@ -3,29 +3,32 @@
 /* uttr, Visible Speech: spectrograph grid paper, forest ink, flat sheets. */
 
 :root {
-  --paper: #dfe4dc;
-  --paper-line: rgba(42, 84, 70, 0.08);
-  --sheet: #f6f7f4;
-  --sheet-2: #e9ede7;
-  --sheet-edge: rgba(22, 37, 31, 0.12);
-  --ink: #16251f;
-  --ink-2: #33463e;
-  --muted: #4d5e56;
-  --rule: rgba(22, 37, 31, 0.14);
-  --forest: #2a5446;
-  --mint: #a6d6bc;
-  --mint-wash: rgba(166, 214, 188, 0.6);
-  --strike: #a04a33;
-  --desk: #c9d3cc;
-  --hinge: #a9b4ad;
+  /* Palette from the uttr app's own tokens (v0.4.0): forest #274B40, neutrals tinted toward
+     forest (OKLCH hue ~168), forest ink as the "black", cream on dark, pale mint as the dark accent. */
+  --paper: #e2e9e6;
+  --paper-line: rgba(39, 75, 64, 0.075);
+  --sheet: #fcfdfc;
+  --sheet-2: #f2f5f4;
+  --sheet-edge: rgba(17, 42, 33, 0.11);
+  --ink: #112a21;
+  --ink-2: #30423b;
+  --muted: #535e59;
+  --rule: rgba(17, 42, 33, 0.13);
+  --forest: #274b40;
+  --mint: #a8e0c1;
+  --mint-wash: rgba(168, 224, 193, 0.6);
+  --strike: #b94739;
+  --desk: #c9d4cf;
+  --hinge: #a9b4af;
 
-  --night: #16251f;
-  --night-2: #24493d;
-  --on-night: #eef1ec;
+  --night: #112a21;
+  --night-2: #204638;
+  --on-night: #f8f6ee;
   --on-night-2: #b9c8bf;
-  --night-rule: rgba(238, 241, 236, 0.16);
+  --night-rule: rgba(248, 246, 238, 0.16);
 
-  --sans: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
+  --display: "Urbanist Variable", "Hanken Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+  --sans: "Hanken Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
   --hand: "Shantell Sans Variable", "Comic Sans MS", cursive;
   --mono: "Martian Mono Variable", ui-monospace, Menlo, monospace;
 
@@ -108,6 +111,7 @@ h1,
 h2,
 h3 {
   margin: 0;
+  font-family: var(--display);
   font-weight: 560;
   text-wrap: balance;
 }
@@ -162,14 +166,16 @@ p {
 
 .h1 {
   font-size: clamp(46px, 5.6vw, 82px);
+  font-weight: 520;
   line-height: 0.97;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.028em;
 }
 
 .h2 {
   font-size: clamp(40px, 4.6vw, 66px);
+  font-weight: 520;
   line-height: 1;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.025em;
 }
 
 .h2-sm {
@@ -322,8 +328,9 @@ p {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  font-family: var(--display);
   font-weight: 650;
-  font-size: 22px;
+  font-size: 23px;
   letter-spacing: -0.02em;
   text-decoration: none;
 }
@@ -864,7 +871,7 @@ p {
   border: 1.5px solid var(--mint);
 }
 .zone-net {
-  border: 1.5px dashed rgba(238, 241, 236, 0.35);
+  border: 1.5px dashed rgba(248, 246, 238, 0.35);
 }
 .zone-name {
   display: flex;
@@ -944,7 +951,7 @@ p {
   gap: 14px;
   padding: 28px 28px 92px;
   background: var(--sheet);
-  border-radius: 4px;
+  border-radius: 14px;
   box-shadow: 0 0 0 1px var(--sheet-edge);
 }
 .sheet-f > p {
@@ -1047,7 +1054,7 @@ p {
   line-height: 1.5;
 }
 .swap .sel {
-  background: rgba(42, 84, 70, 0.18);
+  background: rgba(39, 75, 64, 0.18);
 }
 .swap .note {
   text-align: center;
@@ -1094,7 +1101,7 @@ p {
   gap: 7px;
   min-height: 32px;
   padding: 0 12px;
-  border: 1px solid rgba(42, 84, 70, 0.4);
+  border: 1px solid rgba(39, 75, 64, 0.4);
   border-radius: 99px;
   color: var(--forest);
   font-size: 14px;
@@ -1211,7 +1218,7 @@ p {
 }
 .badge.ghost {
   background: transparent;
-  box-shadow: inset 0 0 0 1px rgba(42, 84, 70, 0.4);
+  box-shadow: inset 0 0 0 1px rgba(39, 75, 64, 0.4);
   color: var(--forest);
 }
 @media (max-width: 560px) {
@@ -1272,7 +1279,8 @@ p {
 }
 .prose h1,
 .prose h2,
-.prose h3 {
+.prose h3,
+.prose h4 {
   margin: 0 0 8px;
   font-size: 15px;
   font-weight: 600;
@@ -1359,9 +1367,10 @@ p {
   background: var(--night-2);
 }
 .dl-table tr.is-mine {
-  background: rgba(166, 214, 188, 0.1);
+  background: rgba(168, 224, 193, 0.1);
 }
 .dl-os {
+  font-family: var(--display);
   font-size: 22px;
   font-weight: 560;
 }
@@ -1446,6 +1455,7 @@ tr:hover .dl-go svg {
 .parent strong {
   display: block;
   margin-top: 2px;
+  font-family: var(--display);
   font-size: 34px;
   font-weight: 560;
   letter-spacing: -0.02em;
@@ -1615,4 +1625,48 @@ tr:hover .dl-go svg {
   color: var(--muted);
   font-weight: 400;
   letter-spacing: 0;
+}
+
+/* ——— Questions: the release-row rhythm, as native disclosure ——— */
+
+.faq {
+  border-top: 1.5px solid var(--ink);
+}
+.faq-item {
+  border-bottom: 1px solid var(--rule);
+}
+.faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 0;
+  cursor: pointer;
+  list-style: none;
+}
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+.faq-item h3 {
+  font-size: clamp(20px, 2vw, 24px);
+  font-weight: 560;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+.faq-item summary:hover h3 {
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
+}
+.faq-item summary svg {
+  flex: none;
+  transition: transform 0.3s var(--ease-out);
+}
+.faq-item[open] summary svg {
+  transform: rotate(180deg);
+}
+.faq-item p {
+  max-width: 40em;
+  padding: 0 36px 24px 0;
+  color: var(--ink-2);
 }

@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { useState } from "react";
 import { formatDate, formatSize, PARENT_URL, RELEASES_URL, REPO_URL, useLatestAssets, useReleaseFeed, useVisitor } from "../data";
+import { FAQ } from "../faq";
 import { PLATFORM_LABELS, type Platform, type Release } from "../releases";
 import { ArrowDown, ArrowOut, Chevron, Cloud, Laptop } from "./Icons";
 
@@ -100,12 +101,16 @@ export function Privacy() {
           </div>
           <div className="zone zone-net">
             <h3 className="zone-name">
-              <Cloud size={18} /> The internet, only if you ask
+              <Cloud size={18} /> The internet, for these only
             </h3>
             <ul className="net-list">
               <li>
                 <b>Hugging Face</b>
                 <span>Model downloads and searches that you start.</span>
+              </li>
+              <li>
+                <b>GitHub Releases</b>
+                <span>An update check at launch and every 6 hours. It downloads one public file and sends nothing about you.</span>
               </li>
               <li>
                 <b>Your speech service</b>
@@ -193,8 +198,8 @@ export function Features() {
               A quiet tray app, with everything on your <span className="say">disk.</span>
             </h3>
             <p className="muted">
-              Search past dictations. Download models with resumable, checksum-verified downloads. The model unloads when you
-              stop using it.
+              Search past dictations and see your words, speed and streak on Home. Models download resumably and are checked
+              against SHA-256. New versions arrive in the app: one click, signature-checked, and your settings stay put.
             </p>
           </div>
           <img
@@ -203,7 +208,7 @@ export function Features() {
             width="1800"
             height="1240"
             loading="lazy"
-            alt="The uttr History page listing recent dictations from Slack, Mail and Notes"
+            alt="The uttr History page listing today's dictations from Slack, Mail, Notes and Visual Studio Code"
           />
         </div>
       </div>
@@ -335,7 +340,8 @@ function ReleaseRow({ release, latest, expanded, onToggle }: { release: Release;
         inert={!expanded}
       >
         {/* GitHub renders and sanitizes this HTML (the API's html media type). */}
-        <div className="prose" dangerouslySetInnerHTML={{ __html: release.notesHtml || "<p>No notes for this release.</p>" }} />
+        {/* Its headings drop to h4 so they sit under this section's h2 in the page outline. */}
+        <div className="prose" dangerouslySetInnerHTML={{ __html: release.notesHtml.replace(/<(\/?)h[1-3]\b/g, "<$1h4") || "<p>No notes for this release.</p>" }} />
         <a className="link" href={release.url}>
           {release.tag} on GitHub <ArrowOut />
         </a>
@@ -371,7 +377,7 @@ export function Download() {
             ) : (
               "The latest release, straight from GitHub."
             )}{" "}
-            Builds may be unsigned, so your system may ask before opening.
+            Builds may be unsigned, so your system may ask before opening. After that, uttr updates itself.
           </p>
         </div>
         <div className="table-box">
@@ -442,6 +448,37 @@ export function Download() {
   );
 }
 
+/* ——— Questions ——— */
+
+export function Questions() {
+  return (
+    <section className="section" id="faq" aria-labelledby="faq-title">
+      <div className="wrap split">
+        <div>
+          <h2 id="faq-title" className="h2 h2-sm">
+            Questions, <span className="say">answered.</span>
+          </h2>
+          <p className="muted">
+            Anything else is in the{" "}
+            <a href={`${REPO_URL}#readme`}>README</a> or the <a href={`${REPO_URL}/issues`}>issue tracker</a>.
+          </p>
+        </div>
+        <div className="faq">
+          {FAQ.map(({ q, a }, i) => (
+            <details key={q} className="faq-item" open={i === 0}>
+              <summary>
+                <h3>{q}</h3>
+                <Chevron />
+              </summary>
+              <p>{a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ——— Footer ——— */
 
 export function Footer() {
@@ -464,6 +501,7 @@ export function Footer() {
               <a href="/#how">How it works</a>
               <a href="/#privacy">Privacy model</a>
               <a href="/#features">Features</a>
+              <a href="/#faq">Questions</a>
               <a href="/#download">Download</a>
             </div>
             <div>

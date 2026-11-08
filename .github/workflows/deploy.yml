@@ -4,6 +4,13 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # Rebuild daily so the prerendered release snapshot, structured data and llms.txt track the latest
+  # uttr release (the page itself already loads live release data). The app repo can also trigger
+  # a rebuild on release with a repository_dispatch of type "uttr-release".
+  schedule:
+    - cron: "17 6 * * *"
+  repository_dispatch:
+    types: [uttr-release]
 
 concurrency:
   group: deploy
@@ -26,6 +33,8 @@ jobs:
 
       - run: npm ci
       - run: npm run build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Check the PHP endpoint parses
         run: php -l dist/api/releases-lib.php && php -l dist/api/releases.php && php -l dist/api/download.php
@@ -56,3 +65,7 @@ jobs:
         run: |
           curl -fsS -o /dev/null https://uttr.letsdecodeai.com/
           curl -fsS https://uttr.letsdecodeai.com/api/releases | grep -q '"latest"'
+          curl -fsS https://uttr.letsdecodeai.com/ | grep -q 'application/ld+json'
+          curl -fsS -o /dev/null https://uttr.letsdecodeai.com/sitemap.xml
+          curl -fsS -o /dev/null https://uttr.letsdecodeai.com/robots.txt
+          curl -fsS -o /dev/null https://uttr.letsdecodeai.com/llms.txt
